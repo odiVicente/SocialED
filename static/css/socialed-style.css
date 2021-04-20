@@ -3,46 +3,59 @@
 
 #container {
   font-family: Helvetica, Geneva, Arial, sans-serif;
-  padding-left: 20px;
   background-color: #FFFFFF; /* beige */
-  color: red; /* dark grey */
+  color: #091540;
   margin: 10px;
 }
+
 a {
   text-decoration: none;
+  color: #091540;
 } 
 
-a:link{
- color:black;
-
- }
 a:hover {
-  color:green;
+  color:#7692FF;
 }
+
 h1 {
-   color:blue;
-   font-size:20pt;
-
-
+  color:#1B2CC1;
+  font-size:20pt;
 }
-form {
 
-
-
-
-
+form, #container>div {
+  border: 2px solid #7692FF;
+  background-color: #ABD2FA;
+  padding: 20px;
+  border-radius: 10px;
 }
+
 label {
-
-
-
-
-
+  font-weight: bolder;
 }
-.inputs {
 
+input:focus{
+  border: 2px solid #091540;
+  outline: none;
+}
 
+input[type="text"], input[type="password"] {
+  position: relative;
+  margin: 5px 0;
+  padding: 5px;
+  border: 1px solid #091540;
+  border-radius: 10px;
+  background-color: white;
+  width: 50%;
+}
 
+input[type="checkbox"]{
+  margin: 5px 0;
+}
 
+input[type="submit"]{
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
 }
 
