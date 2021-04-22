@@ -9,7 +9,7 @@
   margin: 10px;
 }
 
-a:href{
+a:link{
  color:black;
 
  }
@@ -22,8 +22,8 @@ h1 {
    color:blue;
    font-size:20pt;
 
-
 }
+
 form {
 
 
