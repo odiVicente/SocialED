@@ -5,40 +5,68 @@
   font-family: Helvetica, Geneva, Arial, sans-serif;
   padding-left: 20px;
   background-color: #FFFFFF; /* beige */
-  font-color: #2A2929; /* dark grey */
+  color: #44565a;
   margin: 10px;
 }
-a:link{
- color:black;
 
- }
+a {
+  text-decoration: none;
+  color: #00171F;
+}
+
 a:hover {
-  color:green;
+  color:#d9ddde;
 }
+
 h1 {
-   color:blue;
+   color: #44565a;
    font-size:20pt;
-
-
 }
+
+div#container>div>p {
+  margin-left: 15px;
+}
+
+div#container>div, div#container>form {
+  border: 2px solid #3bb0a4;
+  border-radius: 10px;
+  background-color: #a4d6cf;
+}
+
 form {
-
-
-
-
-
+  padding: 15px;  
 }
+
 label {
-
-
-
-
-
+  font-weight: bolder;
+  color: #44565a;
+  padding: 10px 0;
 }
+
 .inputs {
-
-
-
-
+  margin: 5px 0;
 }
 
+input {
+  padding: 3px;
+  border: 1px solid #44565a;
+  border-radius: 10px; 
+}
+
+input:focus {
+  border: 2px solid #44565a;
+  outline: none;
+}
+
+input[type="submit"] {
+  margin-top: 5px;
+  padding: 5px;
+  font-weight: bolder;
+  border: 1px solid #44565a;
+  background-color: white;
+}
+
+input[type="text"], input[type="email"], input[type="password"]{
+  position: relative;
+  width: 50%;
+}
