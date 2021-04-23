@@ -41,6 +41,7 @@ def processLogin():
            '<html lang="es">' \
            '<head>' \
            '<title> Home - SocNet </title>' \
+            '<link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>'\
            '</head>' \
            '<body> <div id ="container">' \
 		   '<a href="/"> SocNet </a> | <a href="home"> Home </a> | <a href="login"> Log In </a> | <a href="signup"> Sign Up </a>' \
@@ -66,6 +67,7 @@ def processSignup():
            '<html lang="es">' \
            '<head>' \
            '<title> Inicio - SocialED </title>' \
+            '<link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>'\
            '</head>' \
            '<body> <div id ="container">' \
 		   '<a href="/"> SocialED </a> | <a href="home"> Home </a> | <a href="login"> Log In </a> | <a href="signup"> Sign Up </a>' \
@@ -93,6 +95,7 @@ def processHome():
            '<html lang="es">' \
            '<head>' \
            '<title> Inicio - SocialED </title>' \
+            '<link href="static/css/socialed-style.css" rel="stylesheet" type="text/css"/>'\
            '</head>' \
            '<body> <div id="container">' \
 		   '<a href="/"> SocialED </a> | <a href="home"> Home </a> | <a href="login"> Log In </a> | <a href="signup"> Sign Up </a>' \
