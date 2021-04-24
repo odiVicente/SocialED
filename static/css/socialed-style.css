@@ -10,16 +10,16 @@
 }
 
 a:link{
- color:black;
+ color: yellow;
 
  }
 
 a:hover {
-  color:green;
+  color: red;
 }
 
 h1 {
-   color:blue;
+   color: green;
    font-size:20pt;
 
 }
