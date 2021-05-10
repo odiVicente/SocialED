@@ -7,23 +7,23 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template("index.html")
+    return app.send_static_file('index.html')
 
 
 @app.route('/home', methods=['GET'])
 def home():
-    return render_template("home.html")
+    return app.send_static_file('home.html')
 
 
 @app.route('/login', methods=['GET'])
 def login():
-    return render_template("login.html")
+    return app.send_static_file('login.html')
 
 
 
 @app.route('/signup', methods=['GET'])
 def signup():
-    return render_template("signup.html")
+    return app.send_static_file('signup.html')
 
 
 @app.route('/processLogin', methods=['GET', 'POST'])
@@ -38,7 +38,7 @@ def processLogin():
               return "Warning: Some fields are missing"
 
 
-       return render_template("login.html")
+       return render_template("login.html", email = request.form['email'], passwd = request.form['passwd'] )
 
 
 @app.route('/processSignup', methods=['GET', 'POST'])
@@ -52,7 +52,7 @@ def processSignup():
        if missing:
               return "Warning: Some fields are missing"
 
-       return render_template("signup.html")
+       return render_template("signup.html", nickname = request.form['nickname'], email = request.form['email'], passwd = request.form['passwd'], confirm = request.form['confirm'] )
 
 
 @app.route('/processHome', methods=['GET', 'POST'])
@@ -66,7 +66,7 @@ def processHome():
 	if missing:
 		return "Warning: Some fields are missing"
 
-	return render_template("home.html")
+	return render_template("home.html", last = request.form['last'], message = request.form['message'])
 
 
 
