@@ -3,15 +3,19 @@
 Inicio - SocialED
 {% endblock %}
 {% block contenido %}
-<h1>Hi, How are you?</h1>
-                	<form action="processHome" method="post" name="home"> ' \
-			<label for="message">Say something:</label><div class="inputs">' \
-			<input id="message" maxlength="128" name="message" size="80" type="text" required="true" value=""/>' \
-			<input id="last" type="hidden" name="last" required="true" value="' + request.form['last'] + '<br>'+ request.form['message'] + '">' \
-	                 </div>
-                    	<div class="inputs">
+<h1>Hola internauta, Qué tal estás?</h1>
+    <div>
+        <form action="processHome" method="post" name="home">
+            <label for="message">Escribe algo...</label>
+            <div class="inputs">
+                <input id="message" name="message" required="true"
+                       placeholder="Aquí tus bellas palabras..." maxlength="128" size="80"
+                       type="text" value=""/>
+                <input id="last" name="last" type="hidden" value=""/>
+            </div>
+            <div class="inputs">
                 <input id="post_submit" name="post_submit" type="submit" value="Post!"/>
-           		<br><br>Previous Posts: <br> + request.form['last'] + <br> +request.form['message'] + 
-                	</form>
-            		</div></div>
+            </div>
+        </form>
+    </div>
 {% endblock %}
