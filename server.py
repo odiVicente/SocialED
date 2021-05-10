@@ -37,7 +37,7 @@ def processLogin():
               return "Warning: Some fields are missing"
 
 
-       return render_template("login.html") 
+       return render_template("login.html",mail=request.form['email'],contra=request.form['passwd']) 
        #'<!DOCTYPE html> ' \
            #'<html lang="es">' \
            #'<head>' \
@@ -64,7 +64,7 @@ def processSignup():
        if missing:
               return "Warning: Some fields are missing"
 
-       return render_template("sigup.html",)
+       return render_template("sigup.html",nick=request.form['nickname'],mail=request.form['email'],contra=request.form['passwd'],confi=request.form['confirm'])
 
         #    '<!DOCTYPE html> ' \
         #   '<html lang="es">' \
