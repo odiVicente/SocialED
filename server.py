@@ -1,10 +1,8 @@
 # -*- coding: iso-8859-15 -*-
 
-
+from flask import render_template
 from flask import Flask, request
 app = Flask(__name__)
-
-from flask import render_template
 
 
 @app.route('/', methods=['GET'])
@@ -62,7 +60,7 @@ def processSignup():
               if value is None:
                      missing.append(field)
        if missing:
-              return process_missingFields(missing, "/login")
+              return process_missingFields(missing, "/signup")
 
        return '<!DOCTYPE html> ' \
            '<html lang="es">' \
@@ -90,7 +88,7 @@ def processHome():
 		if value is None:
 			missing.append(field)
 	if missing:
-		return process_missingFields(missing, "/login")
+		return process_missingFields(missing, "/home")
 
 	return '<!DOCTYPE html> ' \
            '<html lang="es">' \
