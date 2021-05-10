@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-15 -*-
 
-
+from flask import render_template
 from flask import Flask, request
 app = Flask(__name__)
 
@@ -64,7 +64,7 @@ def processSignup():
        if missing:
               return "Warning: Some fields are missing"
 
-       return render_template("singup.html")
+       return render_template("sigup.html",)
 
         #    '<!DOCTYPE html> ' \
         #   '<html lang="es">' \
@@ -94,7 +94,7 @@ def processHome():
 	if missing:
 		return "Warning: Some fields are missing"
 
-	return render_template("home.html")
+	return render_template("home.html",ultimo=request.form['last'],mensaje=request.form['message'])
     #'<!DOCTYPE html> ' \
      #      '<html lang="es">' \
       #     '<head>' \
@@ -111,11 +111,11 @@ def processHome():
 	    #             '</div>' \
         #            	'<div class="inputs">' \
         #                '<input id="post_submit" name="post_submit" type="submit" value="Post!"/>' \
-        #   		'<br><br>Previous Posts: <br>' + request.form['last'] + '<br>' +request.form['message'] + \
+        # 		'<br><br>Previous Posts: <br>' + request.form['last'] + '<br>' +request.form['message'] + \
         #        	'</form>' \
         #    		'</div></div>' \
         #   '</body>' \
-        #   '</html>'''
+        #   '</html>
 
 
 #app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
