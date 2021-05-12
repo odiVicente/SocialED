@@ -1,1 +1,0 @@
-{"user_name": "aa", "password": "aa", "messages": [], "email": "ctorcanomaestre@hotmail.com", "friends": []}

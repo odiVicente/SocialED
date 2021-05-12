@@ -40,10 +40,8 @@ def processLogin():
                   missing.append(field)
        if missing:
              return process_missingFields(missing, "/login")
-       
-       load_user(request.form['email'], request.form['passwd'])
-
-       return render_template("login.html", email = request.form['email'], passwd = request.form['passwd'] )
+       else:
+            return load_user(request.form['email'], request.form['passwd'])
 
 
 @app.route('/processSignup', methods=['GET', 'POST'])
@@ -56,11 +54,8 @@ def processSignup():
                      missing.append(field)
        if missing:
               return process_missingFields(missing, "/signup")
-       
-       create_user_file(request.form['nickname'], request.form['email'], request.form['passwd'],request.form['confirm'])
-       save_current_user()
-
-       return render_template("signup.html", nickname = request.form['nickname'], email = request.form['email'], passwd = request.form['passwd'], confirm = request.form['confirm'] )
+       else:
+           return create_user_file(request.form['nickname'], request.form['email'], request.form['passwd'],request.form['confirm'])
 
 
 @app.route('/processHome', methods=['GET', 'POST'])
@@ -157,13 +152,15 @@ def create_user_file(name, email, passwd, passwd_confirmation):
     session['messages'] = []
     session['friends'] = []
     session['email'] = email
+    save_current_user()
     return redirect(url_for("home"))
 
 def process_error(message, next_page):
     """
-    :param message:
-    :param next_page:
-    :return:
+    Método que carga pagina de error
+    :param message: mensaje de error para el usuario
+    :param next_page: página siguiente
+    :return: template error.html
     """
     return render_template("error.html", error_message=message, next=next_page)
 
