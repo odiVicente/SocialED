@@ -7,24 +7,24 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
-    #return app.send_static_file('index.html')
-    return render_template("index.html")
+    return app.send_static_file('index.html')
+    #return render_template("index.html")
 
 @app.route('/home', methods=['GET'])
 def home():
-    #return app.send_static_file('home.html')
-    return render_template("home.html")
+    return app.send_static_file('home.html')
+    #return render_template("home.html")
 
 @app.route('/login', methods=['GET'])
 def login():
-    #return app.send_static_file('login.html')
-    return render_template("login.html")
+    return app.send_static_file('login.html')
+    #return render_template("login.html")
 
 
 @app.route('/signup', methods=['GET'])
 def signup():
-    #return app.send_static_file('signup.html')
-    return render_template("signup.html")
+    return app.send_static_file('signup.html')
+    #return render_template("signup.html")
 
 @app.route('/processLogin', methods=['GET', 'POST'])
 def processLogin():
@@ -67,6 +67,15 @@ def processHome():
 
 	return render_template("home.html", last = request.form['last'], message = request.form['message'])
 
+
+# este codigo controla los errores de campos ausentes
+def process_missingFields(campos, next_page):
+    """
+    :param campos: Lista de Campos que faltan
+    :param next_page: ruta al pulsar botón continuar
+    :return: plantilla generada
+    """
+    return render_template("missingFields.html", inputs=campos, next=next_page)
 
 
 #app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
