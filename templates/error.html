@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block titulo %}
+Error - SocialED
+{% endblock %}
+{% block contenido %}
+<h1>Ups! A ocurrido un error</h1>
+<div class="bloque_error">
+    <form>
+        <label>Mensaje: {{error_message}}</label>
+    </form>
+    <p>¿Quieres volver a intentarlo? <a href="{{ next }}">Click aquí</a>
+</div>
+{% endblock %}
