@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "/home/vanto/virtual/bin/python3"
+    "python.pythonPath": "/home/vanto/virtual/bin/python3",
+    "editor.fontSize": 10,
+    "screencastMode.fontSize": 20,
+    "scm.inputFontSize": 10,
+    "debug.console.fontSize": 10,
+    "terminal.integrated.fontSize": 10,
+    "markdown.preview.fontSize": 10
 }

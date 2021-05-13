@@ -1,7 +1,10 @@
 # -*- coding: iso-8859-15 -*-
-
+import json
+import os
+from flask import sessions
 from flask import render_template
 from flask import Flask, request
+SITE_ROOT = ""
 app = Flask(__name__)
 
 
@@ -66,7 +69,84 @@ def processHome():
 		return process_missingFields(missing, "/home")
 
 	return render_template("home.html", last = request.form['last'], message = request.form['message'])
+def load_user(email, passwd):
+    """
+    Carga datos usuario (identified by email) del directorio data.
+    Busca un archivo de nombre el email del usuario
+    :param email: user id
+    :param passwd: password 
+    :return: pagina home si existe el usuario y es correcto el pass
+    """
+    file_path = os.path.join(SITE_ROOT, "data/", email)
+    if not os.path.isfile(file_path):
+        return process_error("User not found / No existe un usuario con ese nombre", url_for("login"))
+    with open(file_path, 'r') as f:
+        data = json.load(f)
+    if data['password'] != passwd:
+        return process_error("Incorrect password / la clave no es correcta", url_for("login"))
+    session['user_name'] = data['user_name']
+    session['messages'] = data['messages']
+    session['password'] = passwd
+    session['email'] = email
+    session['friends'] = data['friends']
+    return redirect(url_for("home"))
 
+def save_current_user():
+    datos = {
+        "user_name": session["user_name"],
+        "password": session['password'],
+        "messages": session['messages'], # lista de tuplas (time_stamp, mensaje)
+        "email": session['email'],
+        "friends": session['friends']
+    }
+    file_path = os.path.join(SITE_ROOT, "data/", session['email'])
+    with open(file_path, 'w') as f:
+        json.dump(datos, f)
+
+
+def create_user_file(name, email, passwd, passwd_confirmation):
+    """
+    Crea el fichero (en directorio /data). El nombre será el email.
+    Si el fichero ya existe, error.
+    Si no coincide el pass con la confirmación, error.
+    :param name: Nombre o apodo del usuario
+    :param email: correo
+    :param passwd: password 
+    :param passwd_confirmation: debe coincidir con pass
+    :return: Si no hay errores, dirección al usuario a home.
+    """
+
+    directory = os.path.join(SITE_ROOT, "data")
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    file_path = os.path.join(SITE_ROOT, "data/", email)
+    if os.path.isfile(file_path):
+        return process_error("The email is already used, you must select a different email / Ya existe un usuario con ese nombre", url_for("signup"))
+    if passwd != passwd_confirmation:
+        return process_error("Your password and confirmation password do not match / Las claves no coinciden", url_for("signup"))
+    datos = {
+        "user_name": name,
+        "password": passwd,
+        "messages": [],
+        "friends": []
+    }
+    with open(file_path, 'w') as f:
+        json.dump(datos, f)
+    session['user_name'] = name
+    session['password'] = passwd
+    session['messages'] = []
+    session['friends'] = []
+    session['email'] = email
+    return redirect(url_for("home"))
+
+def process_error(message, next_page):
+    """
+
+    :param message:
+    :param next_page:
+    :return:
+    """
+    return render_template("error.html", error_message=message, next=next_page)
 
 
 #app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
