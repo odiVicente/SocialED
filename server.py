@@ -32,8 +32,7 @@ def signup():
 
 @app.route('/cuenta', methods=['GET'])
 def cuenta():
-    email = session['email']
-    if email == "":
+    if not 'email' in session:
         return app.send_static_file('login.html')
     else:
         return render_template('micuenta.html', user_name = session['user_name'], email = session['email'], )
