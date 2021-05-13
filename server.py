@@ -151,7 +151,7 @@ def process_error(message, next_page):
     return render_template("error.html", error_message=message, next=next_page)
 
 
-#app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 # start the server with the 'run()' method
 if __name__ == '__main__':
     app.run(debug=True, port=55550)
