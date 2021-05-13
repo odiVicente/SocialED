@@ -1,10 +1,12 @@
 # -*- coding: iso-8859-15 -*-
+from flask import Flask, request, render_template, session, redirect, url_for
+import os.path
+from os import listdir
 import json
-import os
-from flask import sessions
-from flask import render_template
-from flask import Flask, request
-SITE_ROOT = ""
+from time import time
+import sys
+
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 app = Flask(__name__)
 
 
@@ -79,11 +81,11 @@ def load_user(email, passwd):
     """
     file_path = os.path.join(SITE_ROOT, "data/", email)
     if not os.path.isfile(file_path):
-        return process_error("User not found / No existe un usuario con ese nombre", url_for("login"))
+        return process_error("User not found / No existe un usuario con ese nombre", url_for("login.html"))
     with open(file_path, 'r') as f:
         data = json.load(f)
     if data['password'] != passwd:
-        return process_error("Incorrect password / la clave no es correcta", url_for("login"))
+        return process_error("Incorrect password / la clave no es correcta", url_for("login.html"))
     session['user_name'] = data['user_name']
     session['messages'] = data['messages']
     session['password'] = passwd
