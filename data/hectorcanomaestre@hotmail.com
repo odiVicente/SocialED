@@ -1,1 +1,1 @@
-{"user_name": "Hector", "password": "aa", "messages": [], "email": "hectorcanomaestre@hotmail.com", "friends": []}
+{"user_name": "Hector", "password": "ast", "messages": [], "email": "hectorcanomaestre@hotmail.com", "friends": []}

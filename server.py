@@ -30,6 +30,10 @@ def signup():
     return app.send_static_file('signup.html')
     #return render_template("signup.html")
 
+@app.route('/cuenta', methods=['GET'])
+def cuenta():
+    return render_template('micuenta.html', user_name = session['user_name'], email = session['email'], )
+
 @app.route('/processLogin', methods=['GET', 'POST'])
 def processLogin():
        missing = []
@@ -71,6 +75,46 @@ def processHome():
 
 	return render_template("home.html", last = request.form['last'], message = request.form['message'])
 
+@app.route('/processMicuenta', methods=['GET', 'POST'])
+def processMicuenta():
+    if request.form.get('passwd_submit'):
+        email = session['email']
+        if email == "":
+            return process_error('Error: Primero debes acceder a tu cuenta.', url_for("signup")) 
+        else:
+            return render_template('newPasswd.html')
+    if request.form.get('logout_submit'):
+        session['user_name'] = ""
+        session['messages'] = ""
+        session['password'] = ""
+        session['email'] = ""
+        session['friends'] = ""
+        return render_template('index.html')
+
+
+
+@app.route('/processChangepasswd', methods=['GET', 'POST'])
+def processChangepasswd():
+    missing = []
+    fields = ['oldPasswd', 'newPasswd', 'confirmNewpasswd']
+    for field in fields:
+        value = request.form.get(field, None)
+        if value is None:
+            missing.append(field)
+        if missing:
+            return process_missingFields(missing, render_template('micuenta.html'))
+    return newPassword(session['password'])
+     
+#este método define el comportamiento del formulario de cambio de contraseña
+def newPassword(sessionPasswd):
+    if sessionPasswd != request.form['oldPasswd']:
+        return process_error("Error: tu actual contraseña es incorrecta.", url_for('cuenta'))
+    elif request.form['newPasswd'] != request.form['confirmNewpasswd']:
+        return process_error("Se ha producido un error al confirmar la nueva contraseña", url_for('cuenta'))
+    else:
+        session['password'] = request.form['newPasswd']
+        save_current_user()
+        return render_template('home.html')
 
 # este codigo controla los errores de campos ausentes
 def process_missingFields(campos, next_page):
