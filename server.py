@@ -6,6 +6,7 @@ from os import listdir
 import json
 from time import time
 import sys
+import datetime
 app = Flask(__name__)
 
 
@@ -76,7 +77,7 @@ def processHome():
 	if missing:
 		return process_missingFields(missing, "/home")
 
-	return render_template("home.html", last = request.form['last'], message = request.form['message'])
+	return guardarMensajes(request.form['message'])
 
 @app.route('/processMicuenta', methods=['GET', 'POST'])
 def processMicuenta():
@@ -164,6 +165,21 @@ def save_current_user():
     file_path = os.path.join(SITE_ROOT, "data/", session['email'])
     with open(file_path, 'w') as f:
         json.dump(datos, f)
+
+def guardarMensajes(mensaje):
+    SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+    file_path = os.path.join(SITE_ROOT, "data/", session['email'])
+    with open(file_path, 'r') as f:
+        data = json.load(f)
+    fechaHora = datetime.datetime.now()
+    fechaHora = fechaHora.strftime("%m/%d/%Y, %H:%M:%S")
+    paqMensaje = []
+    paqMensaje.append(fechaHora)
+    paqMensaje.append(mensaje)
+    session['messages'] = data['messages']
+    session['messages'].append(paqMensaje)
+    save_current_user()
+    return render_template("home.html", last = request.form['last'], message = request.form['message'])
 
 
 def create_user_file(name, email, passwd, passwd_confirmation):
