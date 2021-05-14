@@ -7,6 +7,7 @@ from time import time
 import sys
 
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+
 app = Flask(__name__)
 
 def load_user(email, passwd):
@@ -31,6 +32,8 @@ def load_user(email, passwd):
     session['friends'] = data['friends']
     return redirect(url_for("home"))
 
+#modifico esta funcion para que se guarden los datos que contiene en campo message en el JSON
+#aunque no obtengo lo que realmente necesito, creo que lo estoy planteando mal.
 def save_current_user():
     session['messages']=request.form['message']+request.form['last']
     datos = {
@@ -83,7 +86,6 @@ def create_user_file(name, email, passwd, passwd_confirmation):
 
 def process_error(message, next_page):
     """
-
     :param message:
     :param next_page:
     :return:
@@ -154,6 +156,14 @@ def processHome():
 	    return process_missingFields(missing, "/home")
     return save_current_user()
 	#return render_template("home.html", last = request.form['last'], message = request.form['message'])
+
+def process_missingFields(campos, next_page):
+    """
+    :param campos: Lista de Campos que faltan
+    :param next_page: ruta al pulsar botón continuar
+    :return: plantilla generada
+    """
+    return render_template("missingFields.html", inputs=campos, next=next_page)
 
 # start the server with the 'run()' method
 if __name__ == '__main__':
