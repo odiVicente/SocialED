@@ -70,3 +70,26 @@ input[type="text"], input[type="email"], input[type="password"]{
   position: relative;
   width: 50%;
 }
+#home {
+  display: flex;
+}
+
+#left, #right {
+  border: 2px solid #3bb0a4;
+  border-radius: 10px;
+  margin: 10px 5px;
+}
+
+#msgAmistades {
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid #3bb0a4;
+  height: 200px;
+  padding: 10px;
+}
+
+select {
+  display: block;
+  height: 300px;
+  width: 300px;
+}
