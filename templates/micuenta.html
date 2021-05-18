@@ -5,11 +5,11 @@ Mi Cuenta
 {% block contenido %}
 <h1>Mi Cuenta - SocialED</h1>
 <div>
-    <p>Nombre: {{ user_name }}</p>
+    <p>Nombre: {{ nickname }}</p>
     <p>Email: {{ email }} </p>
-    <form action="processMicuenta" method="POST" name="miCuenta">
+    <form action="micuenta" method="POST" name="miCuenta">
         <div class="inputs">
-            <input id="passwd_submit" name="passwd_submit" type="submit" value="Cambiar password">
+            <input id="edit_submit" name="edit_submit" type="submit" value="Editar perfil">
         </div>
         <div class="inputs">
             <input id="logout_submit" type="submit" name="logout_submit" value="Salir">

@@ -7,7 +7,19 @@
 </head>
 <body>
 <div id="container">
-    <a href="/">SocialED </a>| <a href="home">Inicio</a> | <a href="login">Acceso </a>| <a href="signup">Registro</a> | <a href="cuenta"> Mi Cuenta</a>
+    <a href="/">SocialED </a>|
+    {% if logged %}
+    <a href="home">Inicio</a> |
+    <a href="micuenta">
+        Mi Cuenta
+    </a>
+    |
+    <a href="logout">
+        Salir ({{ nickname }})
+    </a>
+    {% else %}
+    <a href="login">Acceso </a>| <a href="signup">Registro</a>
+    {% endif %}
     {% block contenido %}{% endblock %}
 </div>
 <footer>2021</footer>
