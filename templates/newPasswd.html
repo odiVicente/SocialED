@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}
+Nueva Contraseña - SocialED
+{% endblock %}
+{% block contenido %}
+<h1>Cambio de Contraseña</h1>
+<form action="processChangepasswd" method="POST" name="chngPasswd">
+    <label for="oldPasswd">Contraseña antigua</label>
+    <div class="inputs">
+        <input id="oldPasswd" name="oldPasswd" type="password" required="true">
+    </div>
+    <label for="newPasswd">Contraseña nueva</label>
+    <div class="inputs">
+        <input id="newPasswd" name="newPasswd" type="password">
+    </div>
+    <label for="confirmNewpasswd">Confirma la contraseña</label>
+    <div class="inputs">
+        <input id="confirmNewpasswd" name="confirmNewpasswd" type="password">
+    </div>
+    <div class="inputs">
+        <input id="chngPasswd_submit" name="chngPasswd_submit" type="submit" value="Cambiar Password"/>
+    </div>
+</form>
+{% endblock %}
